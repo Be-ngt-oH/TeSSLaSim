@@ -1,0 +1,16 @@
+Signal<Int> temperature = 0;
+temperature(0 .. 5) = 5;
+temperature(5 .. 10) = 15;
+temperature(10 .. 15) = 0;
+temperature(15 .. 20) = 7 - t;
+
+---
+
+in temperature: Signal<Int>
+
+define low := not(gt(temperature, sub(constantSignal(0), constantSignal(10))))
+define high := gt(temperature, constantSignal(10))
+
+define unsafeTemperature := or(low, high)
+
+out unsafeTemperature

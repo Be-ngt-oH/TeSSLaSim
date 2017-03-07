@@ -1,0 +1,36 @@
+/* --- Media queries --- */
+$tablet-width: 768px; // Tablets, e.g. iPad mini
+$desktop-width: 992px; // Desktop or high resoultion tablets
+
+@mixin mobile {
+  @media only screen and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin smallScreen {
+  @media only screen and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+/* --- Utilities --- */
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

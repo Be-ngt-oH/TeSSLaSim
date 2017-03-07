@@ -1,0 +1,35 @@
+Event<Void> startConsumer;
+Event<Void> readPointerChanged;
+Event<Void> stopConsumer;
+
+startConsumer(10) = #;
+readPointerChanged(12, .., 18) = # if t % 2 == 0;
+stopConsumer(11) = #;
+stopConsumer(20) = #;
+
+---
+
+in startConsumer: Events<Unit>
+in readPointerChanged: Events<Unit>
+in stopConsumer: Events<Unit>
+
+define prop(e1,e2) := mrv(merge(ifThen(e1, constantSignal(true)), ifThen(e2, constantSignal(false))), false)
+
+define clk := occursAny(occursAny(stopConsumer, readPointerChanged), startConsumer)
+define stop := prop(stopConsumer, clk)
+define start := prop(startConsumer, clk)
+define change := prop(readPointerChanged, clk)
+
+define monitor_output := monitor("
+  always(p1 implies (not(p2) until p3))",
+  p1 := stop,
+  p2 := change,
+  p3 := start,
+  clock := clk
+)
+
+out startConsumer
+out readPointerChanged
+out stopConsumer
+
+out monitor_output

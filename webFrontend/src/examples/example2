@@ -1,0 +1,18 @@
+Events<Int> a;
+a(0, .., 10) = t if t % 2 == 0;
+a(11, .., 20) = -t + 10 if t % 2 == 0;
+
+Events<Int> b;
+b(0, .., 10) = t;
+b(11, .., 20) = -t + 10;
+
+---
+
+in a: Events<Int>
+in b: Events<Int>
+
+define a_signal := mrv(a, 0)
+define b_signal := mrv(b, 0)
+
+out a_signal
+out b_signal
