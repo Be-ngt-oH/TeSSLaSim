@@ -1,30 +1,30 @@
-# TeSSLaSimulator Developer Guide
+# TeSSLaSim Developer Guide
 
 The project is divided into four sub projects:
 
   * *scenarioParser* which contains code related to translation of scenario
     specifications to maps of streams
 
-  * *simulatorCore* which deals with evaluation of tessla specifications on a
+  * *simulatorCore* which deals with evaluation of TeSSLa specifications on a
     map of input streams
 
   * *webService* a simple server implementation that provides a web interface
 
-  * *webFrontend* a front-end for entering and visualizations of scenarios and
+  * *webFrontend* a frontend for entering and visualizations of scenarios and
     TeSSLa specifications
 
 
 Furthermore the directory *shared* contains some functions that are shared
-between the back-end parts.
+between the backend parts.
 
 The build tool for the Scala sources is [SBT](http://www.scala-sbt.org/).
 The frontend is built via [Webpack](https://webpack.github.io/), but
 [npm](https://www.npmjs.com/) scripts for triggering the build process are
 provided.
 
-## Back-end
+## Backend
 
-The back-end is completely written in Scala and organized as a
+The backend is completely written in Scala and organized as a
 [multi-project build](http://www.scala-sbt.org/1.0/docs/Multi-Project.html).
 When working in the SBT console you can invoke `projects` to see a list of the
 registered project and `project {{projectName}}` to change the current project.
@@ -40,7 +40,7 @@ The web service will be served at `localhost:8080`.
 Note: If you are running that command for the first time it might take a while
 since SBT has to download all dependencies first.
     
-## Front-end
+## Frontend
 
 You can find its own README in the folder `/webFrontend`. But here are the most
 important commands anyway.
